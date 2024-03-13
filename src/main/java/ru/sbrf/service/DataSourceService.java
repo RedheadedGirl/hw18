@@ -5,7 +5,7 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.sbrf.dto.Recipe;
 import ru.sbrf.exceptions.SqlMappingException;
 
@@ -16,7 +16,7 @@ import java.util.List;
 
 import static ru.sbrf.util.SqlQueries.*;
 
-@Component
+@Service
 public class DataSourceService {
 
     private JdbcTemplate jdbcTemplate;
