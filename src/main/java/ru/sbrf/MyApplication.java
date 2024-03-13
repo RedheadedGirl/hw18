@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import ru.sbrf.dto.Component;
 import ru.sbrf.dto.Recipe;
-import ru.sbrf.service.DataSourceService;
+import ru.sbrf.service.CookingBookService;
 import ru.sbrf.util.SqlQueries;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class MyApplication {
 
     public static void main(String[] args) {
         var factory = SpringApplication.run(MyApplication.class);
-        var dataSourceService = factory.getBean(DataSourceService.class);
+        var dataSourceService = factory.getBean(CookingBookService.class);
 
         dataSourceService.createTables(SqlQueries.CREATE_TABLE_COMPONENTS, SqlQueries.CREATE_TABLE_RECIPES,
                 SqlQueries.CREATE_TABLE_RECIPES_COMPONENTS);
@@ -49,7 +49,7 @@ public class MyApplication {
 
     }
 
-    private static void addRecipe(Scanner scanner, DataSourceService dataSourceService) {
+    private static void addRecipe(Scanner scanner, CookingBookService cookingBookService) {
         Recipe recipe = new Recipe();
         System.out.println("Enter a recipe name:");
         recipe.setName(scanner.next());
@@ -73,7 +73,7 @@ public class MyApplication {
             }
         }
         recipe.setComponents(components);
-        dataSourceService.addRecipe(recipe);
+        cookingBookService.addRecipe(recipe);
     }
 
 

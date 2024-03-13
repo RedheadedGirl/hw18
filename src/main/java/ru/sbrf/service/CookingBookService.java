@@ -17,12 +17,12 @@ import java.util.List;
 import static ru.sbrf.util.SqlQueries.*;
 
 @Service
-public class DataSourceService {
+public class CookingBookService {
 
     private JdbcTemplate jdbcTemplate;
     private NamedParameterJdbcTemplate namedJdbcTemplate;
 
-    public DataSourceService(DataSource dataSource) {
+    public CookingBookService(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.namedJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
