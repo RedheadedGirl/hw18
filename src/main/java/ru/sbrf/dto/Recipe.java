@@ -1,4 +1,4 @@
-package ru.sbrf.config.dto;
+package ru.sbrf.dto;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package ru.sbrf.config.util;
+package ru.sbrf.util;
 
 public class SqlQueries {
 
@@ -21,9 +21,9 @@ public class SqlQueries {
             "    amount integer NOT NULL," +
             "    PRIMARY KEY (id)," +
             "    CONSTRAINT component_fk FOREIGN KEY (id_component)" +
-            "        REFERENCES components (id), " +
+            "        REFERENCES components (id) ON DELETE CASCADE, " +
             "    CONSTRAINT recipe_fk FOREIGN KEY (id_recipe)" +
-            "        REFERENCES recipes (id) " +
+            "        REFERENCES recipes (id) ON DELETE CASCADE" +
             ");";
 
     public static final String SELECT_RECIPE_BY_NAME = "SELECT r.id, r.\"name\", c.component, rc.amount from recipes r \n" +
@@ -32,4 +32,15 @@ public class SqlQueries {
             "INNER JOIN components c\n" +
             "ON c.id = rc.id_component\n" +
             "WHERE r.\"name\" LIKE :recipe";
+
+    public static final String DELETE_FROM_COMPONENTS = "DELETE FROM components WHERE id IN (" +
+            "SELECT id_component from components co " +
+            "JOIN recipes_components rc " +
+            "ON rc.id_component = co.id " +
+            "JOIN recipes r " +
+            "ON rc.id_recipe = r.id " +
+            "WHERE r.name = ? " +
+            ")";
+
+    public static final String DELETE_FROM_RECIPES = "DELETE FROM recipes WHERE name = ?";
 }

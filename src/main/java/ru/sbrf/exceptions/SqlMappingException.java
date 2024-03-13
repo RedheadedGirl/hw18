@@ -1,4 +1,4 @@
-package ru.sbrf.config.exceptions;
+package ru.sbrf.exceptions;
 
 public class SqlMappingException extends RuntimeException {
 
